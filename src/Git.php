@@ -12,6 +12,7 @@ use MichalHepner\Git\Repository\Branch;
 use RuntimeException;
 use SplFileInfo;
 use Symfony\Component\Filesystem\Filesystem;
+use Throwable;
 
 class Git
 {
@@ -39,14 +40,24 @@ class Git
 
     public function clone(string $repository, string $dir, array $options = []): Repository
     {
-        !$this->filesystem->exists($dir) && $this->filesystem->mkdir($dir);
+        $dirInitiallyExists = $this->filesystem->exists($dir);
+        !$dirInitiallyExists && $this->filesystem->mkdir($dir);
+
         if ((new FilesystemIterator($dir))->valid()) {
             throw new RuntimeException(sprintf('Can\'t clone into %s, directory is not empty', $dir));
         }
 
         $this->executeCommand(new Command\CloneCommand($this->processFactory, $dir, [$repository, '.'], $options, $this->env));
 
-        return $this->loadRepository($dir);
+        try {
+            return $this->loadRepository($dir);
+        } catch (Throwable $exception) {
+            if (!$dirInitiallyExists && $this->filesystem->exists($dir)) {
+                $this->filesystem->remove($dir);
+            }
+
+            throw $exception;
+        }
     }
 
     public function load(string|SplFileInfo $dir): Repository
