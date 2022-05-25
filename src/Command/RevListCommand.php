@@ -1,0 +1,114 @@
+<?php
+
+namespace MichalHepner\Git\Command;
+
+class RevListCommand extends AbstractCommand
+{
+    public const OPTION_MAX_COUNT = '--max-count';
+    public const OPTION_GREP = '--grep';
+    public const OPTION_REVERSE = '--reverse';
+    public const OPTION_SKIP = '--skip';
+    public const OPTION_SINCE = '--since';
+    public const OPTION_AFTER = '--after';
+    public const OPTION_UNTIL = '--until';
+    public const OPTION_BEFORE = '--before';
+    public const OPTION_MAX_AGE = '--max-age';
+    public const OPTION_MIN_AGE = '--min-age';
+    public const OPTION_AUTHOR = '--author';
+    public const OPTION_COMMITTER = '--committer';
+    public const OPTION_GREP_REFLOG = '--grep-reflog';
+    public const OPTION_WALK_REFLOGS = '--walk-reflogs';
+    public const OPTION_ALL_MATCH = '--all-match';
+    public const OPTION_INVERT_GREP = '--invert-grep';
+    public const OPTION_REGEXP_IGNORE_CASE = '--regexp-ignore-case';
+    public const OPTION_BASIC_REGEXP = '--basic-regexp';
+    public const OPTION_EXTENDED_REGEXP = '--extended-regexp';
+    public const OPTION_FIXED_STRINGS = '--fixed-strings';
+    public const OPTION_PERL_REGEXP = '--perl-regexp';
+    public const OPTION_REMOVE_EMPTY = '--remove-empty';
+    public const OPTION_MERGES = '--merges';
+    public const OPTION_NO_MERGES = '--no-merges';
+    public const OPTION_MIN_PARENTS = '--min-parents';
+    public const OPTION_MAX_PARENTS = '--max-parents';
+    public const OPTION_NO_MIN_PARENTS = '--no-min-parents';
+    public const OPTION_NO_MAX_PARENTS = '--no-max-parents';
+    public const OPTION_FIRST_PARENT = '--first-parent';
+    public const OPTION_NOT = '--not';
+    public const OPTION_ALL = '--all';
+    public const OPTION_BRANCHES = '--branches';
+    public const OPTION_TAGS = '--tags';
+    public const OPTION_REMOTES = '--remotes';
+    public const OPTION_GLOB = '--glob';
+    public const OPTION_EXCLUDE = '--exclude';
+    public const OPTION_REFLOG = '--reflog';
+    public const OPTION_ALTERNATE_REFS = '--alternate-refs';
+    public const OPTION_SINGLE_WORKTREE = '--single-worktree';
+    public const OPTION_IGNORE_MISSING = '--ignore-missing';
+    public const OPTION_STDIN = '--stdin';
+    public const OPTION_QUIET = '--quiet';
+    public const OPTION_DISK_USAGE = '--disk-usage';
+    public const OPTION_CHERRY_MARK = '--cherry-mark';
+    public const OPTION_CHERRY_PICK = '--cherry-pick';
+    public const OPTION_LEFT_RIGHT = '--left-right';
+    public const OPTION_LEFT_ONLY = '--left-only';
+    public const OPTION_RIGHT_ONLY = '--right-only';
+    public const OPTION_CHERRY = '--cherry';
+    public const OPTION_PRETTY = '--pretty';
+    public const OPTION_DATE = '--date';
+    public const OPTION_MERGE = '--merge';
+    public const OPTION_BOUNDARY = '--boundary';
+    public const OPTION_USE_BITMAP_INDEX = '--use-bitmap-index';
+    public const OPTION_OBJECTS = '--objects';
+    public const OPTION_PROGRESS = '--progress';
+    public const OPTION_SIMPLIFY_BY_DECORATION = '--simplify-by-decoration';
+    public const OPTION_SHOW_PULLS = '--show-pulls';
+    public const OPTION_FULL_HISTORY = '--full-history';
+    public const OPTION_DENSE = '--dense';
+    public const OPTION_SPARSE = '--sparse';
+    public const OPTION_SIMPLIFY_MERGES = '--simplify-merges';
+    public const OPTION_ANCESTRY_PATH = '--ancestry-path';
+    public const OPTION_PARENTS = '--parents';
+    public const OPTION_CHILDREN = '--children';
+    public const OPTION_BISECT = '--bisect';
+    public const OPTION_BISECT_VARS = '--bisect-vars';
+    public const OPTION_BISECT_ALL = '--bisect-all';
+    public const OPTION_DATE_ORDER = '--date-order';
+    public const OPTION_AUTHOR_DATE_ORDER = '--author-date-order';
+    public const OPTION_TOPO_ORDER = '--topo-order';
+    public const OPTION_IN_COMMIT_ORDER = '--in-commit-order';
+    public const OPTION_OBJECTS_EDGE = '--objects-edge';
+    public const OPTION_OBJECTS_EDGE_AGGRESSIVE = '--objects-edge-aggressive';
+    public const OPTION_INDEXED_OBJECTS = '--indexed-objects';
+    public const OPTION_UNPACKED = '--unpacked';
+    public const OPTION_OBJECT_NAMES = '--object-names';
+    public const OPTION_NO_OBJECT_NAMES = '--no-object-names';
+    public const OPTION_FILTER = '--filter';
+    public const OPTION_NO_FILTER = '--no-filter';
+    public const OPTION_FILTER_PROVIDED_OBJECTS = '--filter-provided-objects';
+    public const OPTION_FILTER_PRINT_OMITTED = '--filter-print-omitted';
+    public const OPTION_MISSING = '--missing';
+    public const OPTION_EXCLUDE_PROMISOR_OBJECTS = '--exclude-promisor-objects';
+    public const OPTION_NO_WALK = '--no-walk';
+    public const OPTION_DO_WALK = '--do-walk';
+    public const OPTION_FORMAT = '--format';
+    public const OPTION_ABBREV_COMMIT = '--abbrev-commit';
+    public const OPTION_NO_ABBREV_COMMIT = '--no-abbrev-commit';
+    public const OPTION_ONELINE = '--oneline';
+    public const OPTION_ENCODING = '--encoding';
+    public const OPTION_EXPAND_TABS = '--expand-tabs';
+    public const OPTION_NO_EXPAND_TABS = '--no-expand-tabs';
+    public const OPTION_SHOW_SIGNATURE = '--show-signature';
+    public const OPTION_RELATIVE_DATE = '--relative-date';
+    public const OPTION_HEADER = '--header';
+    public const OPTION_NO_COMMIT_HEADER = '--no-commit-header';
+    public const OPTION_COMMIT_HEADER = '--commit-header';
+    public const OPTION_TIMESTAMP = '--timestamp';
+    public const OPTION_GRAPH = '--graph';
+    public const OPTION_SHOW_LINEAR_BREAK = '--show-linear-break';
+    public const OPTION_COUNT = '--count';
+
+    public function getName(): string
+    {
+        return 'rev-list';
+    }
+}
